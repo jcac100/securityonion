@@ -184,7 +184,7 @@ if [[ -f automation/$automation && $(basename $automation) == $automation ]]; th
 
 	attempt=1
 	attempts=60
-	ip a | grep "$MNIC:" | grep "state UP" >> $setup_log 2>&1
+	ip a | grep "$MNIC:" | grep "UP" >> $setup_log 2>&1
 	while [ $? -ne 0 ]; do
 		ip a >> $setup_log 2>&1
 		if [ $attempt -gt $attempts ]; then
@@ -194,7 +194,7 @@ if [[ -f automation/$automation && $(basename $automation) == $automation ]]; th
 		echo "Waiting for network to come up (attempt $attempt of $attempts)" >> $setup_log 2>&1
 		attempt=$((attempt + 1))
 		sleep 10;
-		ip a | grep "$MNIC:" | grep "state UP" >> $setup_log 2>&1
+		ip a | grep "$MNIC:" | grep "UP" >> $setup_log 2>&1
 	done
 	echo "Network is up on $MNIC" >> $setup_log 2>&1
 
